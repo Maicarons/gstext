@@ -5,5 +5,9 @@ formatversion: 1.0.0
 text:
     - type: text
       meta: Maicarons
-      remark: ""
+      remark: test
       content: Hello world!
+    - type: text
+      meta: World
+      remark: test
+      content: Hello Maicarons!

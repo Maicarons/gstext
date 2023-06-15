@@ -1,0 +1,16 @@
+scriptname = 'test'
+description = 'test json'
+author = 'maicarons'
+formatversion = '1.0.0'
+
+[[text]]
+type = 'text'
+meta = 'Maicarons'
+remark = 'test'
+content = 'Hello world!'
+
+[[text]]
+type = 'text'
+meta = 'World'
+remark = 'test'
+content = 'Hello Maicarons!'

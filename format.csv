@@ -1,0 +1,6 @@
+type,description,default
+text,文本,text
+r,文字换行,<empty>
+l,行末等待玩家点击,<empty>
+p,页末等待点击,<empty>
+jump,跳转到剧本档中的某个标签,1

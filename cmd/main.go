@@ -2,6 +2,7 @@ package main
 
 import (
 	"github.com/Maicarons/gstext"
+	"github.com/Maicarons/gstext/cmd/ui"
 	"log"
 	"os"
 )
@@ -12,14 +13,44 @@ var Outfile []byte
 var Ostr gstext.GameText
 
 func main() {
+	if len(os.Args) < 2 || os.Args[1] == "help" {
+		log.Fatalln(`You must specify one or more arguments.
 
-	if os.Args[3] == "to" {
-		Out()
-	} else if os.Args[3] == "convert" {
-
-	} else if os.Args[3] == "version" {
-		println("gstext v", Version)
+example:
+gstext json s.json to xml s.xml`)
 	}
+	if len(os.Args) >= 3 {
+		if os.Args[3] == "to" {
+			Out()
+			return
+		}
+
+	}
+	if len(os.Args) >= 3 {
+		if os.Args[3] == "convert" {
+			return
+		}
+
+	}
+	if len(os.Args) >= 1 {
+		if os.Args[1] == "version" {
+			println("gstext v", Version)
+			return
+		}
+
+	}
+	if len(os.Args) >= 1 {
+		if os.Args[1] == "ui" {
+			ui.Start()
+			return
+		}
+
+	}
+	log.Fatalln(`You must specify one or more arguments.
+
+example:
+gstext json s.json to xml s.xml`)
+
 }
 
 func Out() {
@@ -37,6 +68,7 @@ gstext json s.json to xml s.xml`)
 	if err != nil {
 		log.Fatalln(err.Error())
 	}
+
 	if os.Args[1] == "json" {
 		var err error
 		Ostr, err = gstext.JSONUnmarshalGameText(OrgFile)
@@ -54,14 +86,15 @@ gstext json s.json to xml s.xml`)
 		Ostr, err = gstext.TOMLUnmarshalGameText(OrgFile)
 		if err != nil {
 			log.Fatalln(err.Error())
-		} else if os.Args[1] == "yaml" {
+		}
+	} else if os.Args[1] == "yaml" {
 		var err error
 		Ostr, err = gstext.YAMLUnmarshalGameText(OrgFile)
 		if err != nil {
 			log.Fatalln(err.Error())
-		} else {
-			log.Fatalln("Error input format\nSee \"help\" for more details.")
 		}
+	} else {
+		log.Fatalln("Error input format\nSee \"help\" for more details.")
 	}
 
 	if os.Args[4] == "json" {
