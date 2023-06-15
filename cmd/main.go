@@ -6,11 +6,23 @@ import (
 	"os"
 )
 
+var Version = gstext.Version
+
 var Outfile []byte
 var Ostr gstext.GameText
 
 func main() {
 
+	if os.Args[3] == "to" {
+		Out()
+	} else if os.Args[3] == "convert" {
+
+	} else if os.Args[3] == "version" {
+		println("gstext v", Version)
+	}
+}
+
+func Out() {
 	if len(os.Args) < 6 || os.Args[2] == "help" {
 		log.Fatalln(`You must specify one or more arguments.
 Format:
@@ -73,4 +85,5 @@ gstext json s.json to xml s.xml`)
 	if err != nil {
 		log.Fatalln(err.Error())
 	}
+	println("Success")
 }

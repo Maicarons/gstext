@@ -1,14 +1,14 @@
 {
-  "scriptname": "value",
-  "description": "value",
-  "author": "value",
-  "formatversion": "value",
+  "scriptname": "test",
+  "description": "test json",
+  "author": "maicarons",
+  "formatversion": "1.0.0",
   "text": [
     {
-      "type": "value",
-      "meta":"",
-      "remark": "value",
-      "content": "value"
+      "type": "text",
+      "meta":"Maicarons",
+      "remark": "",
+      "content": "Hello world!"
     }
   ]
 }
