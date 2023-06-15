@@ -26,7 +26,7 @@ func Out() {
 	if len(os.Args) < 6 || os.Args[2] == "help" {
 		log.Fatalln(`You must specify one or more arguments.
 Format:
-gstext [json/xml/yaml] filename to [json/xml/yaml] filename 
+gstext [json/xml/yaml/toml] filename to [json/xml/yaml/toml] filename 
     convert your script to other format
 
 example:
@@ -49,7 +49,12 @@ gstext json s.json to xml s.xml`)
 		if err != nil {
 			log.Fatalln(err.Error())
 		}
-	} else if os.Args[1] == "yaml" {
+	} else if os.Args[1] == "toml" {
+		var err error
+		Ostr, err = gstext.TOMLUnmarshalGameText(OrgFile)
+		if err != nil {
+			log.Fatalln(err.Error())
+		} else if os.Args[1] == "yaml" {
 		var err error
 		Ostr, err = gstext.YAMLUnmarshalGameText(OrgFile)
 		if err != nil {
@@ -74,6 +79,12 @@ gstext json s.json to xml s.xml`)
 	} else if os.Args[4] == "xml" {
 		var err error
 		Outfile, err = Ostr.XMLMarshal()
+		if err != nil {
+			log.Fatalln(err.Error())
+		}
+	} else if os.Args[4] == "toml" {
+		var err error
+		Outfile, err = Ostr.TOMLMarshal()
 		if err != nil {
 			log.Fatalln(err.Error())
 		}
